@@ -3,6 +3,7 @@ const {
   filter,
   findIndex,
   reduce,
+  every,
 } = require('./array-methods-from-scratch');
 
 describe('map function', () => {
@@ -52,12 +53,21 @@ describe('reduce function', () => {
         (acc, item) => {
           if (!acc['✨']) acc['✨'] = 0;
           if (!acc['🗑']) acc['🗑'] = 0;
-          if (item === '✨') acc['✨']++;
-          if (item !== '✨') acc['🗑']++;
+          item === '✨' ? acc['✨']++ : acc['🗑']++;
           return acc;
         },
         {}
       )
     ).toEqual({ '✨': 1, '🗑': 6 });
+  });
+});
+
+describe('every function', () => {
+  it('should take in an array and a callback and return true if every item in the array meets the criteria of the callback; otherwise it should return false', () => {
+    expect(
+      every(['banana', 'orange', 'kiwi', 'pineapple'], (item) =>
+        item.includes('a')
+      )
+    ).toEqual(false);
   });
 });

@@ -50,4 +50,13 @@ reduce = (array, callback, initialValue) =>
   return acc;
 }
 
-module.exports = { map, filter, findIndex, reduce };
+every = (array, callback) =>
+{
+  result = true;
+  for (const item of array) {
+    if (!callback(item)) result = false;
+  }
+  return result;
+}
+
+module.exports = { map, filter, findIndex, reduce, every };
