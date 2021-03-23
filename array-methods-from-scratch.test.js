@@ -1,4 +1,9 @@
-const { map, filter } = require('./array-methods-from-scratch');
+const {
+  map,
+  filter,
+  findIndex,
+  reduce,
+} = require('./array-methods-from-scratch');
 
 describe('map function', () => {
   it('should take in an array and a callback and return a new array that has been mutated', () => {
@@ -30,5 +35,29 @@ describe('findIndex function', () => {
     expect(
       findIndex(['😯', '🙄', '🤠', '🤑'], (item) => item === '🤠')
     ).toEqual(2);
+  });
+
+  it('should take in an array and a callback, returning -1 if the callback never resolves to true', () => {
+    expect(
+      findIndex(['😯', '🙄', '🤠', '🤑'], (item) => item === '😶')
+    ).toEqual(-1);
+  });
+});
+
+describe('reduce function', () => {
+  it('should take in an array, a callback and an optional initial value that will be accumulated with each item in the array according to the callback', () => {
+    expect(
+      reduce(
+        ['junk', 'garbage', 'clutter', 'stuff', 'detritus', 'flotsam', '✨'],
+        (acc, item) => {
+          if (!acc['✨']) acc['✨'] = 0;
+          if (!acc['🗑']) acc['🗑'] = 0;
+          if (item === '✨') acc['✨']++;
+          if (item !== '✨') acc['🗑']++;
+          return acc;
+        },
+        {}
+      )
+    ).toEqual({ '✨': 1, '🗑': 6 });
   });
 });
