@@ -18,9 +18,17 @@ describe('map function', () => {
 describe('filter function', () => {
   it('should take in an array and a callback and return a new array containing only items that resolve to true when the callback is called with them 😵‍💫', () => {
     expect(
-      filter(['billy', 'joe', 'garol', 'skippy'], (item) =>
+      filter(['billy', 'joe', 'garol', 'skippy', 'goober'], (item) =>
         item.startsWith('g')
       )
-    ).toEqual(['garol']);
+    ).toEqual(['garol', 'goober']);
+  });
+});
+
+describe('findIndex function', () => {
+  it('should take in an array and a callback, returning the index of the first item that resolves to true with the callback is called with it', () => {
+    expect(
+      findIndex(['😯', '🙄', '🤠', '🤑'], (item) => item === '🤠')
+    ).toEqual(2);
   });
 });
